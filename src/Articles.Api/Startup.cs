@@ -1,15 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Articles.Api.Infrastructure.Configuration;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Articles.Api
 {
@@ -22,13 +19,19 @@ namespace Articles.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public virtual IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services
+                .AddgRPC()
+                .AddAppPart()
+                .EnableCors()
+                .AddSwagger(Configuration)
+                .AddHttpAccessor()
+                .AddCustomHealthCheck(Configuration);
+
+            return PopulateAutofacContainer(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -36,16 +39,28 @@ namespace Articles.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.ConfigSwagger();
+
+            app.UseCorsPolicy();
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseCors("CorsPolicy");
+
+            app.UseEndpoints(env);
+        }
+
+        private static AutofacServiceProvider PopulateAutofacContainer(IServiceCollection services)
+        {
+            var container = new ContainerBuilder();
+
+            container.Populate(services);
+
+            return new AutofacServiceProvider(container.Build());
         }
     }
 }
