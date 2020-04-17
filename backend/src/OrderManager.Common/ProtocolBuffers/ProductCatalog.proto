@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "ProductCatalog.Api";
+
+import "google/protobuf/empty.proto";
+
+service ProductService{
+    rpc GetAll(google.protobuf.Empty) returns (ProductCatalogView);
+	rpc GetById(GetCommand) returns (ProductView);
+}
+
+message GetCommand{
+	uint32 productId = 1;
+}
+
+message ProductCatalogView{
+	repeated ProductView products = 1;
+}
+
+message ProductView {
+	uint32 id = 1;
+	string name = 2;
+	reserved 3;
+	double price = 4;
+	reserved 5;
+	bool isAvailable = 6;
+}
