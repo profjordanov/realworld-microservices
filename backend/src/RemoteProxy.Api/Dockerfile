@@ -8,6 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["src/RemoteProxy.Api/RemoteProxy.Api.csproj", "src/RemoteProxy.Api/"]
+COPY ["src/OrderManager.Common/OrderManager.Common.csproj", "src/OrderManager.Common/"]
 RUN dotnet restore "src/RemoteProxy.Api/RemoteProxy.Api.csproj"
 COPY . .
 WORKDIR "/src/src/RemoteProxy.Api"
