@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -13,12 +14,17 @@ namespace OrderManager.Common.gRPCClients.ProductCatalog
     public class ProductCatalogClient : IProductCatalogClient
     {
         private readonly ILoggerFactory _loggerFactory;
+        private readonly string _gRpcChannelAddress;
 
         private ProductService.ProductServiceClient _client;
 
-        public ProductCatalogClient(ILoggerFactory loggerFactory)
+        public ProductCatalogClient(ILoggerFactory loggerFactory, string gRpcChannelAddress)
         {
-            _loggerFactory = loggerFactory;
+            _loggerFactory = loggerFactory ??
+                             throw new ArgumentNullException(nameof(loggerFactory));
+
+            _gRpcChannelAddress = gRpcChannelAddress ??
+                                  throw new ArgumentNullException(nameof(gRpcChannelAddress));
         }
 
         protected ProductService.ProductServiceClient Client
@@ -35,15 +41,15 @@ namespace OrderManager.Common.gRPCClients.ProductCatalog
                 var handler = new HttpClientHandler();
                 handler.ClientCertificates.Add(certificate);
 
-                var client = new HttpClient(handler);
+                var client = new HttpClient();
 
-                var opt = new GrpcChannelOptions
+                var channelOptions = new GrpcChannelOptions
                 {
                     HttpClient = client,
                     LoggerFactory = _loggerFactory
                 };
 
-                var channel = GrpcChannel.ForAddress("", opt);
+                var channel = GrpcChannel.ForAddress(_gRpcChannelAddress, channelOptions);
 
                 _client = new ProductService.ProductServiceClient(channel);
 

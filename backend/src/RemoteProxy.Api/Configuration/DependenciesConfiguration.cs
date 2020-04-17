@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using OrderManager.Common.gRPCClients.ProductCatalog;
 
 namespace RemoteProxy.Api.Configuration
@@ -7,7 +8,8 @@ namespace RemoteProxy.Api.Configuration
     {
         public static IServiceCollection AddgRpcClients(this IServiceCollection collection)
         {
-            collection.AddSingleton<IProductCatalogClient, ProductCatalogClient>();
+            collection.AddSingleton<IProductCatalogClient>(
+                provider => new ProductCatalogClient(loggerFactory:new LoggerFactory(), "https://localhost:33022"));
             return collection;
         }
     }
