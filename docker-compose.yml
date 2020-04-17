@@ -1,0 +1,21 @@
+version: "3.4"
+
+services:
+    catalog.api:
+        image: catalogapi
+        build:
+          context: ./backend
+          dockerfile: ./src/ProductCatalog.Api/Dockerfile
+          args:
+            DOTNET_BUILD_CONFIGURATION: Debug
+            ASPNETCORE_ENVIRONMENT: Development
+        ports:
+          - "32011:443"
+        environment:
+          ASPNETCORE_HTTPS_PORT: 32011
+          ASPNETCORE_URLS: https://+
+          ASPNETCORE_Kestrel__Certificates__Default__Password: Qwerty123
+          ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+        volumes:
+          - ~/.aspnet/https:/https:ro 
+        

@@ -9,7 +9,7 @@ namespace RemoteProxy.Api.Configuration
         public static IServiceCollection AddgRpcClients(this IServiceCollection collection)
         {
             collection.AddSingleton<IProductCatalogClient>(
-                provider => new ProductCatalogClient(loggerFactory:new LoggerFactory(), "https://localhost:33022"));
+                provider => new ProductCatalogClient(loggerFactory:new LoggerFactory(), "https://localhost:32011"));
             return collection;
         }
     }

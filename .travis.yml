@@ -1,0 +1,12 @@
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - dotnet dev-certs https -ep ${HOME}/.aspnet/https/aspnetapp.pfx -p { Qwerty123 }
+  - dotnet dev-certs https --trust
+  - chmod +x run-app.sh
+
+script:
+  - ./run-app.sh

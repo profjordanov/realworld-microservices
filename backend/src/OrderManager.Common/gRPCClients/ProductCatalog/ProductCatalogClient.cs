@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
-using Grpc.Core;
 using Grpc.Net.Client;
 using Microsoft.Extensions.Logging;
 using ProductCatalog.Api;
