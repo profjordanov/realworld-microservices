@@ -4,9 +4,9 @@ using ProductCatalog.Api.Persistence;
 
 namespace ProductCatalog.Api.Configuration
 {
-    public static class DependenciesConfiguration
+    internal static class DependenciesConfiguration
     {
-        public static IServiceCollection AddRepositories(this IServiceCollection services)
+        internal static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddSingleton<IProductsRepository, ProductsRepository>();
             return services;

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManager.Common", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteProxy.Api", "src\RemoteProxy.Api\RemoteProxy.Api.csproj", "{6A5958D2-F9F7-42F2-B0FD-604E5D3DC669}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteProxy.Api.Tests", "tests\RemoteProxy.Api.Tests\RemoteProxy.Api.Tests.csproj", "{1AA3B6F7-DF0F-4831-B03D-52276485F666}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{6A5958D2-F9F7-42F2-B0FD-604E5D3DC669}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A5958D2-F9F7-42F2-B0FD-604E5D3DC669}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A5958D2-F9F7-42F2-B0FD-604E5D3DC669}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AA3B6F7-DF0F-4831-B03D-52276485F666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AA3B6F7-DF0F-4831-B03D-52276485F666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AA3B6F7-DF0F-4831-B03D-52276485F666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AA3B6F7-DF0F-4831-B03D-52276485F666}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{585F22D7-1C9E-4D94-8591-90932C5987DD} = {A78D4492-BA06-4B37-BD50-FA299387A719}
 		{A0E42CCD-AD40-4A3C-997A-75B5A78B411E} = {3CD807FD-D8F5-4B9A-9C89-3DE8B2AA4665}
 		{6A5958D2-F9F7-42F2-B0FD-604E5D3DC669} = {3CD807FD-D8F5-4B9A-9C89-3DE8B2AA4665}
+		{1AA3B6F7-DF0F-4831-B03D-52276485F666} = {A78D4492-BA06-4B37-BD50-FA299387A719}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1CD2FE2-6321-45D0-A4A3-86CFB00B9791}
