@@ -2,3 +2,5 @@
 dotnet dev-certs https -ep %USERPROFILE%\.aspnet\https\aspnetapp.pfx -p { password here }
 
 2) dotnet dev-certs https --trust
+
+3) docker-compose exec proxy.api sh
