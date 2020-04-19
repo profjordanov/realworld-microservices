@@ -1,7 +1,4 @@
-﻿using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Certificate;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,25 +11,7 @@ namespace ProductCatalog.Api
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services
-                .AddAuthentication()
-                .AddCertificate(opt =>
-                {
-                    opt.AllowedCertificateTypes = CertificateTypes.SelfSigned;
-                    opt.RevocationMode = X509RevocationMode.NoCheck; // Self-Signed Certs (Development)
-                    opt.Events = new CertificateAuthenticationEvents()
-                    {
-                        OnCertificateValidated = ctx =>
-                        {
-                            // Write additional Validation  
-                            ctx.Success();
-                            return Task.CompletedTask;
-                        }
-                    };
-                });
-            services.AddAuthorization();
-
-
+            services.AddCertificateAuthentication();
             services.AddRepositories();
             services.AddGrpc();
         }

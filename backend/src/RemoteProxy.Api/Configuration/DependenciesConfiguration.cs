@@ -18,8 +18,8 @@ namespace RemoteProxy.Api.Configuration
 
             collection.AddSingleton<IProductCatalogClient>(
                 provider => new ProductCatalogClient(
-                    new LoggerFactory(), 
-                    "https://localhost:32011",
+                    new LoggerFactory(),
+                    config["Service:CatalogAddress"],
                     certificate));
             return collection;
         }
