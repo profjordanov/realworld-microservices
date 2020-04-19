@@ -1,8 +1,10 @@
 ﻿using System.Linq;
+using System.Reflection;
 using Marten;
-using Marten.Events;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Orders.Api.Domain.Entities;
+using Orders.Api.Domain.Events._Base;
 
 namespace Orders.Api.Configuration
 {
@@ -21,16 +23,16 @@ namespace Orders.Api.Configuration
                 options.Events.DatabaseSchemaName = schemaName;
                 options.DatabaseSchemaName = schemaName;
 
-                //options.Events.InlineProjections.AggregateStreamsWith<Tab>();
+                options.Events.InlineProjections.AggregateStreamsWith<Order>();
                 //options.Events.InlineProjections.Add(new TabViewProjection());
 
-                //var events = typeof(TabOpened)
-                //    .Assembly
-                //    .GetTypes()
-                //    .Where(t => typeof(IEvent).IsAssignableFrom(t))
-                //    .ToList();
+                var events = Assembly
+                    .GetExecutingAssembly()
+                    .GetTypes()
+                    .Where(t => typeof(IEvent).IsAssignableFrom(t))
+                    .ToList();
 
-                //options.Events.AddEventTypes(events);
+                options.Events.AddEventTypes(events);
             });
 
             services.AddSingleton<IDocumentStore>(documentStore);

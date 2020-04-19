@@ -5,7 +5,7 @@ using Orders.Api.Domain.Events;
 
 namespace Orders.Api.Domain.Entities
 {
-    public class Order
+    public class Order 
     {
         public Guid Id { get; set; }
 
