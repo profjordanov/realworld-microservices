@@ -18,7 +18,7 @@ namespace RemoteProxy.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddgRpcClients();
+            services.AddgRpcClients(Configuration);
             services.AddControllers();
         }
 
@@ -32,8 +32,6 @@ namespace RemoteProxy.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

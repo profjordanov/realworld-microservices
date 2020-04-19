@@ -13,16 +13,19 @@ namespace OrderManager.Common.gRPCClients.ProductCatalog
     {
         private readonly ILoggerFactory _loggerFactory;
         private readonly string _gRpcChannelAddress;
+        private readonly X509Certificate2 _certificate;
 
         private ProductService.ProductServiceClient _client;
 
-        public ProductCatalogClient(ILoggerFactory loggerFactory, string gRpcChannelAddress)
+        public ProductCatalogClient(ILoggerFactory loggerFactory, string gRpcChannelAddress, X509Certificate2 certificate)
         {
             _loggerFactory = loggerFactory ??
                              throw new ArgumentNullException(nameof(loggerFactory));
 
             _gRpcChannelAddress = gRpcChannelAddress ??
                                   throw new ArgumentNullException(nameof(gRpcChannelAddress));
+
+            _certificate = certificate ?? throw new ArgumentNullException(nameof(certificate));
         }
 
         protected ProductService.ProductServiceClient Client
@@ -33,13 +36,11 @@ namespace OrderManager.Common.gRPCClients.ProductCatalog
                 {
                     return _client;
                 }
-
-                var certificate = new X509Certificate2();
-
+                
                 var handler = new HttpClientHandler();
-                handler.ClientCertificates.Add(certificate);
+                handler.ClientCertificates.Add(_certificate);
 
-                var client = new HttpClient();
+                var client = new HttpClient(handler);
 
                 var channelOptions = new GrpcChannelOptions
                 {

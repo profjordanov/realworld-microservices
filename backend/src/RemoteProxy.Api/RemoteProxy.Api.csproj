@@ -29,5 +29,11 @@
     </Protobuf>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="managerSelfCert.pfx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>
