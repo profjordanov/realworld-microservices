@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using OrderManager.Common.gRPCClients.ProductCatalog;
 
@@ -6,10 +8,19 @@ namespace RemoteProxy.Api.Configuration
 {
     internal static class DependenciesConfiguration
     {
-        public static IServiceCollection AddgRpcClients(this IServiceCollection collection)
+        public static IServiceCollection AddgRpcClients(
+            this IServiceCollection collection,
+            IConfiguration config)
         {
+            var certificate = new X509Certificate2(
+                config["Service:CertFileName"],
+                config["Service:CertPassword"]);
+
             collection.AddSingleton<IProductCatalogClient>(
-                provider => new ProductCatalogClient(loggerFactory:new LoggerFactory(), "https://localhost:32011"));
+                provider => new ProductCatalogClient(
+                    new LoggerFactory(), 
+                    "https://localhost:32011",
+                    certificate));
             return collection;
         }
     }

@@ -2,10 +2,13 @@
 using System.Threading.Tasks;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using Microsoft.AspNetCore.Authentication.Certificate;
+using Microsoft.AspNetCore.Authorization;
 using ProductCatalog.Api.Domain.Repositories;
 
 namespace ProductCatalog.Api
 {
+    [Authorize(AuthenticationSchemes = CertificateAuthenticationDefaults.AuthenticationScheme)]
     public class ProductsService : ProductService.ProductServiceBase
     {
         private readonly IProductsRepository _productsRepository;
