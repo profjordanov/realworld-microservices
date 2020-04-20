@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteProxy.Api", "src\Remo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteProxy.Api.Tests", "tests\RemoteProxy.Api.Tests\RemoteProxy.Api.Tests.csproj", "{1AA3B6F7-DF0F-4831-B03D-52276485F666}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Api", "src\Orders.Api\Orders.Api.csproj", "{78A4A758-8B0D-488E-8E8D-61712DDA2E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Api", "src\Orders.Api\Orders.Api.csproj", "{78A4A758-8B0D-488E-8E8D-61712DDA2E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orders.Api.Tests", "tests\Orders.Api.Tests\Orders.Api.Tests.csproj", "{CE89E25F-B61B-4920-94F5-DD56EEBBC268}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orders.Api.Tests", "tests\Orders.Api.Tests\Orders.Api.Tests.csproj", "{CE89E25F-B61B-4920-94F5-DD56EEBBC268}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket.Api", "src\Basket.Api\Basket.Api.csproj", "{9B48AD27-70A2-4017-BF28-6199700C097E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{CE89E25F-B61B-4920-94F5-DD56EEBBC268}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE89E25F-B61B-4920-94F5-DD56EEBBC268}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE89E25F-B61B-4920-94F5-DD56EEBBC268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B48AD27-70A2-4017-BF28-6199700C097E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B48AD27-70A2-4017-BF28-6199700C097E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B48AD27-70A2-4017-BF28-6199700C097E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B48AD27-70A2-4017-BF28-6199700C097E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{1AA3B6F7-DF0F-4831-B03D-52276485F666} = {A78D4492-BA06-4B37-BD50-FA299387A719}
 		{78A4A758-8B0D-488E-8E8D-61712DDA2E16} = {3CD807FD-D8F5-4B9A-9C89-3DE8B2AA4665}
 		{CE89E25F-B61B-4920-94F5-DD56EEBBC268} = {A78D4492-BA06-4B37-BD50-FA299387A719}
+		{9B48AD27-70A2-4017-BF28-6199700C097E} = {3CD807FD-D8F5-4B9A-9C89-3DE8B2AA4665}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B1CD2FE2-6321-45D0-A4A3-86CFB00B9791}
