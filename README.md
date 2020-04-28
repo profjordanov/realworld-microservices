@@ -5,3 +5,4 @@
 Sample, reference, cross-platform system powered by .NET Core, Ionic, React, Docker, Travis-CI.
 
 Supports:
+-[x] Use Protobuf and gRPC for internal communications.
