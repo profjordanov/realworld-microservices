@@ -7,7 +7,7 @@ namespace Orders.Api.Domain.Entities
 {
     public class Order 
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         public bool IsNew { get; set; }
 
@@ -31,14 +31,14 @@ namespace Orders.Api.Domain.Entities
 
         public decimal TotalAmount => OrderItems.Sum(item => item.Price) + DeliveryTax;
 
-        public OrderDetailsSubmitted SubmitDetails() => new OrderDetailsSubmitted
-        {
-            Email = UserEmail,
-            FullName = UserFullName,
-            Phone = Phone,
-            City = City,
-            Address = Address,
-            OrderItems = OrderItems
-        };
+        //public OrderDetailsSubmitted SubmitDetails() => new OrderDetailsSubmitted
+        //{
+        //    Email = UserEmail,
+        //    FullName = UserFullName,
+        //    Phone = Phone,
+        //    City = City,
+        //    Address = Address,
+        //    OrderItems = OrderItems
+        //};
     }
 }

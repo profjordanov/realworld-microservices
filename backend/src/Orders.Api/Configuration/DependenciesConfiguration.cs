@@ -23,7 +23,7 @@ namespace Orders.Api.Configuration
                 options.Events.DatabaseSchemaName = schemaName;
                 options.DatabaseSchemaName = schemaName;
 
-                options.Events.InlineProjections.AggregateStreamsWith<Order>();
+                options.Events.InlineProjections.AggregateStreamsWith<DeliveryApproval>();
                 //options.Events.InlineProjections.Add(new TabViewProjection());
 
                 var events = Assembly
