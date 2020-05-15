@@ -8,3 +8,4 @@ Sample, reference, cross-platform system powered by .NET Core, Ionic, React, Doc
 
 Supports:
 - [x] Protobuf and gRPC for internal communications.
+- [x] Web Certificate Authentication.
