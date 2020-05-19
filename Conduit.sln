@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfilesService", "src\Prof
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArticlesService.Tests", "tests\ArticlesService.Tests\ArticlesService.Tests.csproj", "{0C59D5E5-F758-454A-A739-E2884094D27A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteProxy.Api", "src\RemoteProxy.Api\RemoteProxy.Api.csproj", "{D9337CAA-B55C-4504-B71B-84A5C882F738}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{0C59D5E5-F758-454A-A739-E2884094D27A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C59D5E5-F758-454A-A739-E2884094D27A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C59D5E5-F758-454A-A739-E2884094D27A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9337CAA-B55C-4504-B71B-84A5C882F738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9337CAA-B55C-4504-B71B-84A5C882F738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9337CAA-B55C-4504-B71B-84A5C882F738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9337CAA-B55C-4504-B71B-84A5C882F738}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{2227DB42-939D-43D1-AA42-BD102E098DAC} = {647816CE-C840-4DBD-BF88-5343D8F53655}
 		{9E2786A7-B33F-4EB6-B635-55F22674877F} = {647816CE-C840-4DBD-BF88-5343D8F53655}
 		{0C59D5E5-F758-454A-A739-E2884094D27A} = {5D9F246F-D0CD-4498-B4E6-25A158B38FC2}
+		{D9337CAA-B55C-4504-B71B-84A5C882F738} = {647816CE-C840-4DBD-BF88-5343D8F53655}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DE43CC6B-3427-4ACC-BA4C-B6BB7347E5B1}
