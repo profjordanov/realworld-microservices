@@ -2,6 +2,7 @@
 using ArticlesService.Domain.Entities;
 using ArticlesService.Protos;
 using AutoMapper;
+using Google.Protobuf.WellKnownTypes;
 
 namespace ArticlesService.Core
 {
@@ -25,7 +26,15 @@ namespace ArticlesService.Core
                 .ForMember(
                     dest => dest.Id, 
                     opts => opts.MapFrom(
-                        src => src.Id.ToString()));
+                        src => src.Id.ToString()))
+                .ForMember(
+                    dest => dest.CreatedAtUtc,
+                    opts => opts.MapFrom(
+                        src => src.CreatedAtUtc.ToTimestamp()))
+                .ForMember(
+                    dest => dest.UpdatedAtUtc,
+                    opts => opts.MapFrom(
+                        src => src.UpdatedAtUtc.HasValue ? src.UpdatedAtUtc.Value.ToTimestamp() : null));
 
         }
 
