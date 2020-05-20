@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RemoteProxy.Api.Controllers._Base;
 
 namespace RemoteProxy.Api.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class HealthController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Health() => Ok();
+        public IActionResult Health() => Ok("Up and running!");
     }
 }
