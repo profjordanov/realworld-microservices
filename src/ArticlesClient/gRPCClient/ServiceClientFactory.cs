@@ -21,7 +21,7 @@ namespace ArticlesClient.gRPCClient
 
         public ArticleService.ArticleServiceClient Create()
         {
-            var certificate = new X509Certificate2(_settings.CertFileName, _settings.CertPassword);
+            //var certificate = new X509Certificate2(_settings.CertFileName, _settings.CertPassword);
             var handler = new HttpClientHandler();
             //handler.ClientCertificates.Add(certificate);
 

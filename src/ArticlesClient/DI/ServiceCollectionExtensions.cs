@@ -9,7 +9,7 @@ namespace ArticlesClient.DI
     {
         public static IServiceCollection AddArticlesClient(this IServiceCollection services, IConfiguration configuration)
         {
-            services.Configure<ArticlesServiceSettings>(configuration.GetSection(""));
+            services.Configure<ArticlesServiceSettings>(configuration.GetSection("Services"));
             services.AddSingleton<IServiceClientFactory, ServiceClientFactory>();
             return services;
         }
