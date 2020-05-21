@@ -5,8 +5,14 @@ using YngStrs.Common;
 
 namespace TagsClient.Commands
 {
-    public class Publish : IRequest<Option<TagsView, Error>>
+    public class PublishCollection : IRequest<Option<TagsView, Error>>
     {
+        public PublishCollection(string[] tags, string articleId)
+        {
+            Tags = tags;
+            ArticleId = articleId;
+        }
+
         public string[] Tags { get; set; }
 
         public string ArticleId { get; set; }

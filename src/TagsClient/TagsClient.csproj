@@ -15,8 +15,4 @@
     <ProjectReference Include="..\TagsProtos\TagsProtos.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="gRPCClient\" />
-  </ItemGroup>
-
 </Project>

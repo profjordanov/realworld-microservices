@@ -14,7 +14,7 @@ namespace ArticlesClient.Views
 
         public string Body { get; set; }
 
-        //public string[] TagList { get; set; }
+        public string[] TagList { get; set; }
 
         //public DateTime CreatedAt { get; set; }
 
