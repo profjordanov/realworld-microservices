@@ -26,7 +26,7 @@ namespace ArticlesClient.CommandHandlers
                 var result = await client.PublishAsync(command.ToPublishArticle());
                 return Unit.Value.Some<Unit, Error>();
             }
-            catch (RpcException)
+            catch (RpcException exception)
             {
                 return Option.None<Unit, Error>(
                     Error.Critical("An unhandled exception occured while persisting the article."));

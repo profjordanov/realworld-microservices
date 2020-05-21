@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ArticlesClient.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -70,16 +71,16 @@ namespace RemoteProxyApi.Controllers
         /// <summary>
         /// Creates an article.
         /// </summary>
-        /// <param name="request">The article data.</param>
+        /// <param name="command">The article data.</param>
         /// <returns>An article model or an error.</returns>
         /// <response code="201">An article was successfully created and an article model was returned.</response>
         /// <response code="400">An error occurred.</response>
         [HttpPost]
         //[ProducesResponseType(typeof(ArticleModel), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Post()
+        public async Task<IActionResult> Post(Publish command)
         {
-            throw new NotImplementedException();
+            return (await Mediator.Send(command)).Match(_ => Ok(), Error);
         }
 
         /// <summary>
