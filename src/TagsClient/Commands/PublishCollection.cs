@@ -16,5 +16,14 @@ namespace TagsClient.Commands
         public string[] Tags { get; set; }
 
         public string ArticleId { get; set; }
+
+        public PublishTags ToGrpcCmd()
+        {
+            return new PublishTags
+            {
+                ArticleId = ArticleId,
+                Names = { Tags }
+            };
+        }
     }
 }
