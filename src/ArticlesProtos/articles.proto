@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "ArticlesService.Protos";
+
+import "google/protobuf/timestamp.proto";
+
+service ArticleService {
+	rpc Publish (PublishArticle) returns (ArticleView);
+}
+
+message PublishArticle {
+	string title = 1;
+	string description  = 2;
+	string body = 3;
+	string authorId = 4;
+}
+
+message ArticleView {
+	string id = 1;
+	string slug = 2;
+	string title = 3;
+	string description  = 4;
+	string body = 5;
+	google.protobuf.Timestamp createdAtUtc = 6;
+	google.protobuf.Timestamp updatedAtUtc = 7;
+	bool isFavorited = 8;
+	int32 favoritesCount = 9;
+	string authorId = 10;
+}
