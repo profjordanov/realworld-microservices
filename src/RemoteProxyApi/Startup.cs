@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RemoteProxyApi.Configurations;
 
 namespace RemoteProxyApi
 {
@@ -23,6 +24,7 @@ namespace RemoteProxyApi
             services.AddArticlesClient(Configuration);
             services.AddMediatR(typeof(Startup),typeof(PublishHandler));
             services.AddControllers();
+            services.AddOpenApi();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -31,6 +33,8 @@ namespace RemoteProxyApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseOpenApi();
 
             app.UseHttpsRedirection();
 
