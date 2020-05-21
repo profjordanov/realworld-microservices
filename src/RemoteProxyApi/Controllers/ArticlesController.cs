@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using ArticlesClient.Commands;
+using ArticlesClient.Views;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -69,18 +70,18 @@ namespace RemoteProxyApi.Controllers
         }
 
         /// <summary>
-        /// Creates an article.
+        /// Publishes an article.
         /// </summary>
         /// <param name="command">The article data.</param>
         /// <returns>An article model or an error.</returns>
         /// <response code="201">An article was successfully created and an article model was returned.</response>
         /// <response code="400">An error occurred.</response>
         [HttpPost]
-        //[ProducesResponseType(typeof(ArticleModel), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ArticleProjection), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post(Publish command)
         {
-            return (await Mediator.Send(command)).Match(_ => Ok(), Error);
+            return (await Mediator.Send(command)).Match(CreatedAtAction, Error);
         }
 
         /// <summary>
@@ -182,6 +183,14 @@ namespace RemoteProxyApi.Controllers
         public async Task<IActionResult> DeleteComment(string slug, int commentId)
         {
             throw new NotImplementedException();
+        }
+
+        private IActionResult CreatedAtAction(ArticleProjection projection)
+        {
+            return CreatedAtAction(
+                nameof(GetBySlug),
+                new { slug  = projection.Slug },
+                projection);
         }
     }
 }

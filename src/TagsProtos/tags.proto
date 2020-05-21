@@ -1,0 +1,21 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "TagsService.Protos";
+
+message PublishTags {
+	repeated string names = 1;
+	string articleId = 2;
+}
+
+message TagView {
+	string id = 1;
+	string name = 2;
+}
+
+message TagsView {
+	repeated TagView tags = 1;
+}
+
+service TagService {
+	rpc PublishCollection (PublishTags) returns (TagsView);
+}
