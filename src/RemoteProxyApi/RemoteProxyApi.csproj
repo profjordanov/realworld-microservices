@@ -15,5 +15,9 @@
     <PackageReference Include="YngStrs.Common" Version="1.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ArticlesClient\ArticlesClient.csproj" />
+  </ItemGroup>
+
 
 </Project>

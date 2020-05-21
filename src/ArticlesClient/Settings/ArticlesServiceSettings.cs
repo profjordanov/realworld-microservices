@@ -2,7 +2,7 @@
 {
     public class ArticlesServiceSettings
     {
-        public string ServerUrl { get; set; }
+        public string ArticlesServerUrl { get; set; }
 
         public string CertFileName { get; set; }
 

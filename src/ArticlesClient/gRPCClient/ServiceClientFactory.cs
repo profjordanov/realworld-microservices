@@ -31,7 +31,7 @@ namespace ArticlesClient.gRPCClient
                 HttpClient = httpClient,
                 LoggerFactory = _loggerFactory
             };
-            var channel = GrpcChannel.ForAddress(_settings.ServerUrl, channelOptions);
+            var channel = GrpcChannel.ForAddress(_settings.ArticlesServerUrl, channelOptions);
 
             var client = new ArticleService.ArticleServiceClient(channel);
 
