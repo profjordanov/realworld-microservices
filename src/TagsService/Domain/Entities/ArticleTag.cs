@@ -1,10 +1,12 @@
-﻿namespace TagsService.Domain.Entities
+﻿using System;
+
+namespace TagsService.Domain.Entities
 {
     public class ArticleTag
     {
-        public int ArticleId { get; set; }
+        public Guid ArticleId { get; set; }
 
-        public int TagId { get; set; }
+        public Guid TagId { get; set; }
         public Tag Tag { get; set; }
     }
 }

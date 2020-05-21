@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using TagsService.Domain.Entities;
 
@@ -6,20 +7,20 @@ namespace TagsService.Persistence.Repositories
 {
     public class TagsRepository
     {
-        private static readonly List<KeyValuePair<int, Tag>> KeyValuePairs = new List<KeyValuePair<int, Tag>>
+        private static readonly List<KeyValuePair<Guid, Tag>> KeyValuePairs = new List<KeyValuePair<Guid, Tag>>
         {
-            new KeyValuePair<int, Tag>(1, new Tag
+            new KeyValuePair<Guid, Tag>(Guid.NewGuid(), new Tag
             {
-                Id = 1
+                Id = Guid.NewGuid()
             })
         };
 
-        private readonly ConcurrentDictionary<int, Tag> _dictionary =
-            new ConcurrentDictionary<int, Tag>(KeyValuePairs);
+        private readonly ConcurrentDictionary<Guid, Tag> _dictionary =
+            new ConcurrentDictionary<Guid, Tag>(KeyValuePairs);
 
         public IEnumerable<Tag> All => _dictionary.Values;
 
-        public Tag GetByIdOrDefault(int tagId)
+        public Tag GetByIdOrDefault(Guid tagId)
         {
             var hasValue = _dictionary.TryGetValue(tagId, out var Tag);
             return hasValue ? Tag : default;

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ArticlesClient.Views;
 using ArticlesService.Protos;
 using MediatR;
 using Optional;
@@ -9,7 +10,7 @@ namespace ArticlesClient.Commands
     /// <summary>
     /// Publish new article command.
     /// </summary>
-    public class Publish : IRequest<Option<Unit, Error>>
+    public class Publish : IRequest<Option<ArticleProjection, Error>>
     {
         [Required]
         public string Title { get; set; }
