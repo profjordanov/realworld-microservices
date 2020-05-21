@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TagsService.Domain.Repositories;
+using TagsService.Persistence.Repositories;
 
 namespace TagsService
 {
@@ -10,6 +12,7 @@ namespace TagsService
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<ITagsRepository, TagsRepository>();
             services.AddGrpc();
         }
 

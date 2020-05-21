@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ArticlesClient.Commands;
+using ArticlesClient.Queries;
 using ArticlesClient.Views;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -30,11 +32,12 @@ namespace RemoteProxyApi.Controllers
         /// <response code="200">Successfully fetched the requested articles.</response>
         [HttpGet]
         [AllowAnonymous]
-        //[ProducesResponseType(typeof(ArticleModel[]), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<ArticleProjection>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Get()
         {
-            throw new NotImplementedException();
+            var result = await Mediator.Send(new AllArticles());
+            return Ok(result);
         }
 
         /// <summary>

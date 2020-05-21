@@ -3,9 +3,11 @@ syntax = "proto3";
 option csharp_namespace = "ArticlesService.Protos";
 
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 
 service ArticleService {
 	rpc Publish (PublishArticle) returns (ArticleView);
+	rpc GetAll (google.protobuf.Empty) returns (ArticlesView);
 }
 
 message PublishArticle {
@@ -26,4 +28,8 @@ message ArticleView {
 	bool isFavorited = 8;
 	int32 favoritesCount = 9;
 	string authorId = 10;
+}
+
+message ArticlesView {
+	repeated ArticleView items = 1;
 }

@@ -12,7 +12,14 @@ namespace ArticlesService.Persistence.Repositories
         {
             new KeyValuePair<Guid, Article>(Guid.Parse("1ba6663f-cba5-44ad-8ef6-81f7500e1351"), new Article
             {
-                Id = Guid.Parse("1ba6663f-cba5-44ad-8ef6-81f7500e1351")
+                Id = Guid.Parse("1ba6663f-cba5-44ad-8ef6-81f7500e1351"),
+                Title = "Title",
+                CreatedAtUtc = DateTimeOffset.UtcNow,
+                Description = "Description",
+                Body = "Body",
+                UpdatedAtUtc = DateTimeOffset.UtcNow,
+                AuthorId = "AuthorId",
+                Slug = "Slug"
             })
         };
 

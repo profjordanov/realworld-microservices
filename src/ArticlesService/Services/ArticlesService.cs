@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ArticlesService.Domain.Entities;
 using ArticlesService.Domain.Repositories;
 using ArticlesService.Protos;
 using AutoMapper;
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 
 namespace ArticlesService.Services
@@ -28,6 +30,15 @@ namespace ArticlesService.Services
 
             var result = _mapper.Map<ArticleView>(entity);
             return Task.FromResult(result);
+        }
+
+        public override Task<ArticlesView> GetAll(Empty request, ServerCallContext context)
+        {
+            var results = _mapper.Map<IEnumerable<ArticleView>>(_repository.All);
+            return Task.FromResult(new ArticlesView
+            {
+                Items = { results }
+            });
         }
     }
 }
