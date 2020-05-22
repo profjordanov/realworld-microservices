@@ -85,6 +85,8 @@ namespace ArticlesClient.CommandHandlers
                 Description = view.Description,
                 Body = view.Body,
                 Slug = view.Slug,
+                CreatedAtUtc = view.CreatedAtUtc.ToDateTimeOffset(),
+                UpdatedAtUtc = view.UpdatedAtUtc.ToDateTimeOffset(),
                 TagList = tagsView?.Tags?.Select(tag => tag.Name).ToArray()
             };
             var result = projection.Some<ArticleProjection, Error>();

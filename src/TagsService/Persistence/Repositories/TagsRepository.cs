@@ -2,16 +2,26 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using TagsService.Domain.Entities;
+using TagsService.Domain.Repositories;
 
 namespace TagsService.Persistence.Repositories
 {
-    public class TagsRepository
+    public class TagsRepository : ITagsRepository
     {
         private static readonly List<KeyValuePair<Guid, Tag>> KeyValuePairs = new List<KeyValuePair<Guid, Tag>>
         {
-            new KeyValuePair<Guid, Tag>(Guid.NewGuid(), new Tag
+            new KeyValuePair<Guid, Tag>(Guid.Parse("47563f41-4c43-473c-83a5-6e65770481c7"), new Tag
             {
-                Id = Guid.NewGuid()
+                Id = Guid.Parse("47563f41-4c43-473c-83a5-6e65770481c7"),
+                Name = "Name",
+                ArticleTags = new HashSet<ArticleTag>
+                {
+                    new ArticleTag
+                    {
+                        ArticleId = Guid.Parse("1ba6663f-cba5-44ad-8ef6-81f7500e1351"),
+                        TagId = Guid.Parse("47563f41-4c43-473c-83a5-6e65770481c7")
+                    }
+                }
             })
         };
 

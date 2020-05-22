@@ -22,7 +22,7 @@ namespace ArticlesService.Core
                     opts => opts.MapFrom(
                         _ => DateTimeOffset.UtcNow));
 
-            CreateMap<Article, ArticleView>(MemberList.None)
+            CreateMap<Article, ArticleView>(MemberList.Source)
                 .ForMember(
                     dest => dest.Id, 
                     opts => opts.MapFrom(

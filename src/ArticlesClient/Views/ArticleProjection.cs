@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ArticlesClient.Views
 {
@@ -16,9 +17,9 @@ namespace ArticlesClient.Views
 
         public string[] TagList { get; set; }
 
-        //public DateTime CreatedAt { get; set; }
+        public DateTimeOffset CreatedAtUtc { get; set; }
 
-        //public DateTime UpdatedAt { get; set; }
+        public DateTimeOffset UpdatedAtUtc { get; set; }
 
         //public bool Favorited { get; set; } //Favorited
 
