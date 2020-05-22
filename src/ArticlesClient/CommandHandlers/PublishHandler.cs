@@ -61,6 +61,10 @@ namespace ArticlesClient.CommandHandlers
             string[] tagList,
             string articleId)
         {
+            if (tagList == null)
+            {
+                return Option.Some<TagsView, Error>(null);
+            }
             try
             {
                 var command = new PublishCollection(tagList, articleId);
