@@ -49,11 +49,17 @@ namespace RemoteProxyApi.Controllers
         /// <response code="404">Could not find the given article.</response>
         [HttpGet("{slug}")]
         [AllowAnonymous]
-        //[ProducesResponseType(typeof(ArticleModel), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(Error), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ArticleProjection), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<IActionResult> GetBySlug(string slug)
         {
-            throw new NotImplementedException();
+            var result = await Mediator.Send(new GetBySlug(slug));
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok();
         }
 
         /// <summary>

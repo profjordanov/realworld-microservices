@@ -8,6 +8,7 @@ import "google/protobuf/empty.proto";
 service ArticleService {
 	rpc Publish (PublishArticle) returns (ArticleView);
 	rpc GetAll (google.protobuf.Empty) returns (ArticlesView);
+	rpc GetBySlug(BySlug) returns (ArticleView);
 }
 
 message PublishArticle {
@@ -32,4 +33,8 @@ message ArticleView {
 
 message ArticlesView {
 	repeated ArticleView items = 1;
+}
+
+message BySlug {
+	string slug = 1;
 }

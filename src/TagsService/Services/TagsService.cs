@@ -21,10 +21,10 @@ namespace TagsService.Services
             _repository = repository;
         }
 
-        public override Task<TagsView> PublishCollection(PublishTags request, ServerCallContext context)
+        public override Task<TagsView> PublishCollection(PublishTags command, ServerCallContext context)
         {
             var tagViews = new List<TagView>();
-            foreach (var tag in request.Names)
+            foreach (var tag in command.Names)
             {
                 var tagId = Guid.NewGuid();
                 var entity = new Tag
@@ -36,7 +36,7 @@ namespace TagsService.Services
                         new ArticleTag
                         {
                             TagId = tagId,
-                            ArticleId = Guid.Parse(request.ArticleId)
+                            ArticleId = Guid.Parse(command.ArticleId)
                         }
                     }
                 };
@@ -74,6 +74,33 @@ namespace TagsService.Services
             };
 
             return Task.FromResult(result);
+        }
+
+        public override Task<TagsView> GetByArticle(ByArticleId query, ServerCallContext context)
+        {
+            var result = new List<TagView>();
+            foreach (var tag in _repository.All)
+            {
+                var articleIds = tag.ArticleTags
+                    .Select(articleTag => articleTag.ArticleId.ToString());
+
+                if (!articleIds.Contains(query.ArticleId))
+                {
+                    continue;
+                }
+
+                var view = new TagView
+                {
+                    Id = tag.Id.ToString(),
+                    Name = tag.Name
+                };
+                result.Add(view);
+            }
+
+            return Task.FromResult(new TagsView
+            {
+                Tags = {result}
+            });
         }
     }
 }
