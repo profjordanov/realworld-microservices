@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using ArticlesService.Domain.Entities;
 using ArticlesService.Domain.Repositories;
@@ -26,6 +27,12 @@ namespace ArticlesService.Services
             var model = _mapper.Map<Article>(request);
 
             model.Id = Guid.NewGuid();
+            if (_repository.All.Any(article => article.Slug == model.Slug))
+            {
+                var guidPart = Guid.NewGuid().ToString().Substring(23);
+                model.Slug += guidPart;
+            }
+
             var entity = _repository.AddOrDefault(model);
 
             var result = _mapper.Map<ArticleView>(entity);
@@ -39,6 +46,21 @@ namespace ArticlesService.Services
             {
                 Items = { results }
             });
+        }
+
+        public override Task<ArticleView> GetBySlug(BySlug request, ServerCallContext context)
+        {
+            var entity = _repository.All
+                .SingleOrDefault(article => article.Slug == request.Slug);
+
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var result = _mapper.Map<ArticleView>(entity);
+
+            return Task.FromResult(result);
         }
     }
 }

@@ -22,4 +22,9 @@ message TagsView {
 service TagService {
 	rpc PublishCollection (PublishTags) returns (TagsView);
 	rpc GetAll (google.protobuf.Empty) returns (TagsView);
+	rpc GetByArticle(ByArticleId) returns (TagsView);
+}
+
+message ByArticleId {
+	string articleId = 1;
 }
