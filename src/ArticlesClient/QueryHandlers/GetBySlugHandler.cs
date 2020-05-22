@@ -30,10 +30,7 @@ namespace ArticlesClient.QueryHandlers
                 return null;
             }
 
-            var tags = await _mediator.Send(new AllByArticleId(article.Id), cancellationToken);
-            var tagNames = tags?.Tags?.Select(view => view.Name).ToArray();
-
-            return new ArticleProjection
+            var result = new ArticleProjection
             {
                 Id = Guid.Parse(article.Id),
                 Title = article.Title,
@@ -41,9 +38,18 @@ namespace ArticlesClient.QueryHandlers
                 Body = article.Body,
                 CreatedAtUtc = article.CreatedAtUtc.ToDateTimeOffset(),
                 UpdatedAtUtc = article.UpdatedAtUtc.ToDateTimeOffset(),
-                Slug = article.Slug,
-                TagList = tagNames
+                Slug = article.Slug
             };
+
+            var tagsView = await _mediator.Send(new AllByArticleId(article.Id), cancellationToken);
+            if (tagsView.Tags == null || tagsView.Tags.All(view => view == null))
+            {
+                return result;
+            }
+
+            var tagNames = tagsView.Tags.Select(view => view.Name).ToArray();
+            result.TagList = tagNames;
+            return result;
         }
     }
 }
