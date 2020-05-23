@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using ArticlesService.Domain.Aggregates;
+using ArticlesService.Domain.Entities;
 using ArticlesService.Domain.Repositories;
 
 namespace ArticlesService.Persistence.Repositories

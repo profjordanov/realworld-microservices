@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ArticlesService.Domain.Aggregates
+namespace ArticlesService.Domain.Entities
 {
     public class Comment
     {
@@ -18,5 +18,6 @@ namespace ArticlesService.Domain.Aggregates
         public string AuthorId { get; set; }
 
         public int ArticleId { get; set; }
+        public Article Article { get; set; }
     }
 }

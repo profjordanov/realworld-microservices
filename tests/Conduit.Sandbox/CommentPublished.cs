@@ -2,7 +2,7 @@
 
 namespace Conduit.Sandbox
 {
-    // CommentAdded
+    // Comment Added
     public class CommentPublished : IArticleEvent
     {
         public Guid ArticleId { get; set; }
