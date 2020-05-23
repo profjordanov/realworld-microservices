@@ -1,56 +1,55 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ArticlesService.Domain.Entities;
 using ArticlesService.Domain.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Optional;
+using Optional.Async.Extensions;
+using YngStrs.Common;
 
 namespace ArticlesService.Persistence.Repositories
 {
     public class ArticlesRepository : IArticlesRepository
     {
-        private static readonly List<KeyValuePair<Guid, Article>> KeyValuePairs = new List<KeyValuePair<Guid, Article>>
+        private readonly ArticlesDbContext _dbContext;
+
+        public ArticlesRepository(ArticlesDbContext dbContext)
         {
-            new KeyValuePair<Guid, Article>(Guid.Parse("1ba6663f-cba5-44ad-8ef6-81f7500e1351"), new Article
-            {
-                Id = Guid.Parse("1ba6663f-cba5-44ad-8ef6-81f7500e1351"),
-                Title = "Title",
-                CreatedAtUtc = DateTimeOffset.UtcNow,
-                Description = "Description",
-                Body = "Body",
-                UpdatedAtUtc = DateTimeOffset.UtcNow,
-                AuthorId = "AuthorId",
-                Slug = "Slug"
-            })
-        };
-
-        private readonly ConcurrentDictionary<Guid, Article> _dictionary =
-            new ConcurrentDictionary<Guid, Article>(KeyValuePairs);
-
-        public IEnumerable<Article> All => _dictionary.Values;
-
-        public Article GetByIdOrDefault(Guid articleId)
-        {
-            var hasValue = _dictionary.TryGetValue(articleId, out var Article);
-            return hasValue ? Article : default;
+            _dbContext = dbContext;
         }
 
-        public Article AddOrDefault(Article article)
-        {
-            var added = _dictionary.TryAdd(article.Id, article);
-            return added ? article : default;
-        }
+        public Task<bool> HasAnyBySlugAsync(string slug) =>
+            _dbContext
+                .Articles
+                .AnyAsync(article => article.Slug == slug);
 
-        public Article UpdateOrDefault(Article article)
-        {
-            var hasValue = _dictionary.TryGetValue(article.Id, out _);
+        public Task<Option<Article, Error>> GetBySlugOrErrorAsync(string slug) =>
+            _dbContext
+                .Articles
+                .AsNoTracking()
+                .SingleOrDefaultAsync(article => article.Slug == slug)
+                .SomeNotNullAsync(Error.NotFound($"No article found with slug: {slug}."));
 
-            if (!hasValue)
+        public async Task<Article> PersistAsync(Article article)
+        {
+            var hasSimilarSlug = await HasAnyBySlugAsync(article.Slug);
+            if (hasSimilarSlug)
             {
-                return default;
+                var guidPart = Guid.NewGuid().ToString().Substring(23);
+                article.Slug += guidPart;
             }
 
-            _dictionary[article.Id] = article;
+            await _dbContext.Articles.AddAsync(article);
+            await _dbContext.SaveChangesAsync();
+
             return article;
         }
+
+        public IAsyncEnumerable<Article> All =>
+            _dbContext
+                .Articles
+                .AsNoTracking()
+                .AsAsyncEnumerable();
     }
 }

@@ -11,7 +11,7 @@ namespace ArticlesService.Configurations
     {
         public static IServiceCollection AddRepositories(this IServiceCollection collection)
         {
-            collection.AddSingleton<IArticlesRepository, ArticlesRepository>();
+            collection.AddScoped<IArticlesRepository, ArticlesRepository>();
             return collection;
         }
 

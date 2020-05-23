@@ -24,24 +24,24 @@ namespace ArticlesClient.QueryHandlers
         public async Task<ArticleProjection> Handle(GetBySlug query, CancellationToken cancellationToken)
         {
             var client = _clientFactory.Create();
-            var article = await client.GetBySlugAsync(query.ToGrpcQuery);
-            if (article == null)
+            var response = await client.GetBySlugAsync(query.ToGrpcQuery);
+            if (!response.HasResult)
             {
                 return null;
             }
 
             var result = new ArticleProjection
             {
-                Id = Guid.Parse(article.Id),
-                Title = article.Title,
-                Description = article.Description,
-                Body = article.Body,
-                CreatedAtUtc = article.CreatedAtUtc.ToDateTimeOffset(),
-                UpdatedAtUtc = article.UpdatedAtUtc.ToDateTimeOffset(),
-                Slug = article.Slug
+                Id = Guid.Parse(response.View.Id),
+                Title = response.View.Title,
+                Description = response.View.Description,
+                Body = response.View.Body,
+                CreatedAtUtc = response.View.CreatedAtUtc.ToDateTimeOffset(),
+                UpdatedAtUtc = response.View.UpdatedAtUtc.ToDateTimeOffset(),
+                Slug = response.View.Slug
             };
 
-            var tagsView = await _mediator.Send(new AllByArticleId(article.Id), cancellationToken);
+            var tagsView = await _mediator.Send(new AllByArticleId(response.View.Id), cancellationToken);
             if (tagsView.Tags == null || tagsView.Tags.All(view => view == null))
             {
                 return result;
