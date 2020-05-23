@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ArticlesService.Domain.Entities;
 using ArticlesService.Domain.Repositories;
@@ -8,6 +6,9 @@ using ArticlesService.Protos;
 using AutoMapper;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
+using Optional;
+using Optional.Async.Extensions;
+using YngStrs.Common;
 
 namespace ArticlesService.Services
 {
@@ -22,21 +23,12 @@ namespace ArticlesService.Services
             _repository = repository;
         }
 
-        public override Task<ArticleView> Publish(PublishArticle request, ServerCallContext context)
+        public override async Task<ArticleView> Publish(PublishArticle command, ServerCallContext context)
         {
-            var model = _mapper.Map<Article>(request);
-
-            model.Id = Guid.NewGuid();
-            if (_repository.All.Any(article => article.Slug == model.Slug))
-            {
-                var guidPart = Guid.NewGuid().ToString().Substring(23);
-                model.Slug += guidPart;
-            }
-
-            var entity = _repository.AddOrDefault(model);
-
+            var article = _mapper.Map<Article>(command);
+            var entity = await _repository.PersistAsync(article);
             var result = _mapper.Map<ArticleView>(entity);
-            return Task.FromResult(result);
+            return result;
         }
 
         public override Task<ArticlesView> GetAll(Empty request, ServerCallContext context)
@@ -48,19 +40,26 @@ namespace ArticlesService.Services
             });
         }
 
-        public override Task<ArticleView> GetBySlug(BySlug request, ServerCallContext context)
+        public override async Task<BySlugResult> GetBySlug(BySlug query, ServerCallContext context) =>
+            (await _repository
+                .GetBySlugOrErrorAsync(query.Slug)
+                .FlatMapAsync(MapSlugResultByArticleOrErrorAsync))
+            .ValueOr(Empty);
+
+        private static BySlugResult Empty => new BySlugResult
         {
-            var entity = _repository.All
-                .SingleOrDefault(article => article.Slug == request.Slug);
+            HasResult = false,
+            View = null
+        };
 
-            if (entity == null)
-            {
-                return null;
-            }
-
+        private Task<Option<BySlugResult, Error>> MapSlugResultByArticleOrErrorAsync(Article entity)
+        {
             var result = _mapper.Map<ArticleView>(entity);
-
-            return Task.FromResult(result);
+            return Task.FromResult(new BySlugResult
+            {
+                HasResult = true,
+                View = result
+            }.Some<BySlugResult, Error>());
         }
     }
 }

@@ -1,12 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ArticlesService.Domain.Entities;
+using Optional;
+using YngStrs.Common;
 
 namespace ArticlesService.Domain.Repositories
 {
     public interface IArticlesRepository
     {
-        IEnumerable<Article> All { get; }
+        Task<Option<Article, Error>> GetBySlugOrErrorAsync(string slug);
 
-        Article AddOrDefault(Article article);
+        Task<Article> PersistAsync(Article article);
+
+        IAsyncEnumerable<Article> All { get; }
     }
 }

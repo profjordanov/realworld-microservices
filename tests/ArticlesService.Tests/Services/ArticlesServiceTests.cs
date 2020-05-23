@@ -23,7 +23,7 @@ namespace ArticlesService.Tests.Services
             var mapperConfiguration = new MapperConfiguration(expression => expression.AddProfile(profile));
             _mapper = new Mapper(mapperConfiguration);
 
-            _repository = new ArticlesRepository();
+            _repository = new ArticlesRepository(DbContextProvider.GetInMemory());
 
             _service = new ArticlesService.Services.ArticlesService(_mapper, _repository);
         }
