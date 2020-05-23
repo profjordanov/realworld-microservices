@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ArticlesService.Domain.Entities;
+using ArticlesService.Domain.Aggregates;
 using ArticlesService.Domain.Repositories;
 using ArticlesService.Protos;
 using AutoMapper;
