@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArticlesService.Domain.Entities
 {
@@ -24,10 +25,11 @@ namespace ArticlesService.Domain.Entities
         [Required]
         public string AuthorId { get; set; }
 
+        [NotMapped]
         public int FavoritesCount => Favorites?.Count ?? 0;
 
-        public HashSet<Comment> Comments { get; set; } = new HashSet<Comment>();
+        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
 
-        public HashSet<ArticleFavorite> Favorites { get; set; } = new HashSet<ArticleFavorite>();
+        public ICollection<ArticleFavorite> Favorites { get; set; } = new HashSet<ArticleFavorite>();
     }
 }
