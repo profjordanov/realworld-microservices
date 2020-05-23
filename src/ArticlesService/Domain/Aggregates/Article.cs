@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ArticlesService.Domain.Entities
+namespace ArticlesService.Domain.Aggregates
 {
     public class Article
     {
@@ -24,10 +23,10 @@ namespace ArticlesService.Domain.Entities
         [Required]
         public string AuthorId { get; set; }
 
-        public int FavoritesCount => Favorites?.Count ?? 0;
+        //public int FavoritesCount => Favorites?.Count ?? 0;
 
-        public HashSet<Comment> Comments { get; set; } = new HashSet<Comment>();
+        //public HashSet<Comment> Comments { get; set; } = new HashSet<Comment>();
 
-        public HashSet<ArticleFavorite> Favorites { get; set; } = new HashSet<ArticleFavorite>();
+        //public HashSet<ArticleFavorite> Favorites { get; set; } = new HashSet<ArticleFavorite>();
     }
 }
