@@ -1,5 +1,5 @@
 ﻿using System;
-using ArticlesService.Domain.Aggregates;
+using ArticlesService.Domain.Entities;
 using ArticlesService.Protos;
 using AutoMapper;
 using Google.Protobuf.WellKnownTypes;
@@ -38,6 +38,7 @@ namespace ArticlesService.Core
 
         }
 
-        private static string MakeSlug(string title) => title.ToLower().Replace(' ', '-');
+        private static string MakeSlug(string title) =>
+            title.ToLower().Replace(' ', '-');
     }
 }

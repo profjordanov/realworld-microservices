@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ArticlesService.Domain.Aggregates;
+using ArticlesService.Domain.Entities;
 
 namespace ArticlesService.Domain.Repositories
 {
