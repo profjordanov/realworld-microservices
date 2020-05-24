@@ -1,5 +1,6 @@
 ﻿using System;
 using ArticlesService.Persistence;
+using ArticlesService.Persistence.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 
 namespace ArticlesService.Tests

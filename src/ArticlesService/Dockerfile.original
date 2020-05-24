@@ -8,7 +8,6 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["src/ArticlesService/ArticlesService.csproj", "src/ArticlesService/"]
-COPY ["src/ArticlesProtos/ArticlesProtos.csproj", "src/ArticlesProtos/"]
 RUN dotnet restore "src/ArticlesService/ArticlesService.csproj"
 COPY . .
 WORKDIR "/src/src/ArticlesService"

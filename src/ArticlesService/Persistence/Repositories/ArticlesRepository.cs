@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using ArticlesService.Domain.Entities;
 using ArticlesService.Domain.Repositories;
+using ArticlesService.Persistence.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Optional;
 using Optional.Async.Extensions;

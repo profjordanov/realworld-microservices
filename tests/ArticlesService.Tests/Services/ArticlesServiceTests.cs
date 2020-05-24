@@ -6,6 +6,7 @@ using ArticlesService.Persistence.Repositories;
 using ArticlesService.Protos;
 using AutoMapper;
 using FluentAssertions;
+using Google.Protobuf.WellKnownTypes;
 using Xunit;
 
 namespace ArticlesService.Tests.Services
@@ -45,6 +46,54 @@ namespace ArticlesService.Tests.Services
 
             // Assert
             result.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task GetAll__Works_Properly()
+        {
+            // Arrange
+            var publishCmd = new PublishArticle
+            {
+                AuthorId = Guid.NewGuid().ToString(),
+                Body = Guid.NewGuid().ToString(),
+                Description = Guid.NewGuid().ToString(),
+                Title = Guid.NewGuid().ToString()
+            };
+
+            await _service.Publish(publishCmd, null);
+
+            // Act
+            var result = await _service.GetAll(new Empty(), null);
+
+            // Assert
+            result.Items.Should().NotBeNullOrEmpty();
+        }
+
+        [Fact]
+        public async Task GetBySlug__Works_Properly()
+        {
+            // Arrange
+            var publishCmd = new PublishArticle
+            {
+                AuthorId = Guid.NewGuid().ToString(),
+                Body = Guid.NewGuid().ToString(),
+                Description = Guid.NewGuid().ToString(),
+                Title = "Some Title Here"
+            };
+
+            var articleView = await _service.Publish(publishCmd, null);
+
+            var query = new BySlug
+            {
+                Slug = articleView.Slug
+            };
+
+            // Act
+            var slug = await _service.GetBySlug(query, null);
+
+            // Assert
+            slug.HasResult.Should().BeTrue();
+            slug.View.Should().NotBeNull();
         }
     }
 }

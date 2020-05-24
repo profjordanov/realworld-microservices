@@ -1,6 +1,7 @@
 ﻿using System;
 using ArticlesService.Domain.Repositories;
 using ArticlesService.Persistence;
+using ArticlesService.Persistence.EntityFramework;
 using ArticlesService.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
