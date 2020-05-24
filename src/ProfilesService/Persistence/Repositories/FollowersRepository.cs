@@ -24,7 +24,7 @@ namespace ProfilesService.Persistence.Repositories
             .AnyAsync(agg => 
                 agg.FollowerId == followerId && agg.FollowingId == followingId);
 
-        public async Task PersistNewAsync(Follower aggregate)
+        public async Task FollowAsync(Follower aggregate)
         {
             _session.Events.Append(
                 stream: Guid.Parse(aggregate.FollowerId),
@@ -33,10 +33,20 @@ namespace ProfilesService.Persistence.Repositories
             await _session.SaveChangesAsync();
         }
 
-        public void Remove(Follower aggregate)
+        public async Task UnfollowAsync(Follower aggregate)
+        {
+            _session.Events.Append(
+                stream: Guid.Parse(aggregate.FollowerId),
+                events: aggregate.Unfollow());
+
+            await _session.SaveChangesAsync();
+            await RemoveAsync(aggregate);
+        }
+
+        public Task RemoveAsync(Follower aggregate)
         {
             _session.Delete(aggregate);
-            _session.SaveChanges();
+            return _session.SaveChangesAsync();
         }
     }
 }

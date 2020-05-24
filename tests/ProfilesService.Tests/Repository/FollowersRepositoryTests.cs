@@ -35,7 +35,7 @@ namespace ProfilesService.Tests.Repository
             };
 
             // Act
-            await _repository.PersistNewAsync(follower);
+            await _repository.FollowAsync(follower);
 
             // Assert
             var result = _repository.GetAsync(followerId, followingId);
@@ -43,7 +43,7 @@ namespace ProfilesService.Tests.Repository
         }
 
         [Fact]
-        public async Task Remove_Works_Properly()
+        public async Task UnfollowAsync_Works_Properly()
         {
             // Arrange
             var followerId = Guid.NewGuid().ToString();
@@ -55,11 +55,11 @@ namespace ProfilesService.Tests.Repository
                 FollowingId = followingId
             };
 
-            await _repository.PersistNewAsync(follower);
+            await _repository.FollowAsync(follower);
             var aggregate = await _repository.GetAsync(followerId, followingId);
 
             // Act
-            _repository.Remove(aggregate);
+            await _repository.UnfollowAsync(aggregate);
 
             // Assert
             var result = await _repository.GetAsync(followerId, followingId);
