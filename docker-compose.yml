@@ -1,0 +1,40 @@
+version: "3.4"
+
+services:
+    tags.api:
+        image: tagsapi
+        build:
+          context: ./
+          dockerfile: ./src/TagsService/Dockerfile
+          args:
+            DOTNET_BUILD_CONFIGURATION: Debug
+            ASPNETCORE_ENVIRONMENT: Development
+        ports:
+          - "9201:443"
+        environment:
+          ASPNETCORE_HTTPS_PORT: 9201
+          ASPNETCORE_URLS: https://+
+          ASPNETCORE_Kestrel__Certificates__Default__Password: Qwerty123
+          ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+        volumes:
+          - ~/.aspnet/https:/https:ro
+    proxy.api:
+        image: proxy.api
+        build: 
+          context: ./
+          dockerfile: ./src/RemoteProxyApi/Dockerfile         
+          args:
+            DOTNET_BUILD_CONFIGURATION: Debug
+            ASPNETCORE_ENVIRONMENT: Development
+        ports:
+          - "9000:80"
+          - "9001:443"
+        environment:
+          ASPNETCORE_HTTPS_PORT: 9001
+          ASPNETCORE_URLS: https://+;http://+
+          ASPNETCORE_Kestrel__Certificates__Default__Password: Qwerty123
+          ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+        depends_on:
+          - tags.api  
+        volumes:
+          - ~/.aspnet/https:/https:ro    
