@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ArticlesService.Domain.Entities;
 using ArticlesService.Domain.Repositories;
@@ -7,8 +8,8 @@ using AutoMapper;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Optional;
-using Optional.Async.Extensions;
 using YngStrs.Common;
+using Option = Optional.Option;
 
 namespace ArticlesService.Services
 {
@@ -41,9 +42,8 @@ namespace ArticlesService.Services
         }
 
         public override async Task<BySlugResult> GetBySlug(BySlug query, ServerCallContext context) =>
-            (await _repository
-                .GetBySlugOrErrorAsync(query.Slug)
-                .FlatMapAsync(MapSlugResultByArticleOrErrorAsync))
+            (await _repository.GetBySlugOrErrorAsync(query.Slug))
+            .FlatMap(MapSlugResultByArticleOrError)
             .ValueOr(Empty);
 
         private static BySlugResult Empty => new BySlugResult
@@ -52,14 +52,22 @@ namespace ArticlesService.Services
             View = null
         };
 
-        private Task<Option<BySlugResult, Error>> MapSlugResultByArticleOrErrorAsync(Article entity)
+        private Option<BySlugResult, Error> MapSlugResultByArticleOrError(Article entity)
         {
-            var result = _mapper.Map<ArticleView>(entity);
-            return Task.FromResult(new BySlugResult
+            try
             {
-                HasResult = true,
-                View = result
-            }.Some<BySlugResult, Error>());
+                var view = _mapper.Map<ArticleView>(entity);
+                return new BySlugResult
+                {
+                    HasResult = true,
+                    View = view
+                }.Some<BySlugResult, Error>();
+            }
+            catch (Exception)
+            {
+                return Option.None<BySlugResult, Error>(
+                    Error.Critical("Unexpected error occured when mapping the article to view."));
+            }
         }
     }
 }

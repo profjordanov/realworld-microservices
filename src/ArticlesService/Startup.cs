@@ -1,5 +1,6 @@
 ﻿using ArticlesService.Configurations;
 using ArticlesService.Persistence;
+using ArticlesService.Persistence.EntityFramework;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

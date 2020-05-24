@@ -1,7 +1,7 @@
 ﻿using ArticlesService.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace ArticlesService.Persistence
+namespace ArticlesService.Persistence.EntityFramework
 {
     public class ArticlesDbContext : DbContext
     {

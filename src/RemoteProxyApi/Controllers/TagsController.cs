@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RemoteProxyApi.Controllers._Base;
+using TagsClient.Queries;
 
 namespace RemoteProxyApi.Controllers
 {
@@ -22,7 +24,9 @@ namespace RemoteProxyApi.Controllers
         [ProducesResponseType(typeof(string[]), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
         {
-            throw new NotImplementedException();
+            var result = await Mediator.Send(new AllTags());
+            var tagNames = result.Tags?.Select(view => view.Name);
+            return Ok(tagNames);
         }
     }
 }
