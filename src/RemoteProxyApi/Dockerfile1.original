@@ -8,6 +8,10 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["src/RemoteProxyApi/RemoteProxyApi.csproj", "src/RemoteProxyApi/"]
+COPY ["src/ArticlesClient/ArticlesClient.csproj", "src/ArticlesClient/"]
+COPY ["src/ArticlesProtos/ArticlesProtos.csproj", "src/ArticlesProtos/"]
+COPY ["src/TagsClient/TagsClient.csproj", "src/TagsClient/"]
+COPY ["src/TagsProtos/TagsProtos.csproj", "src/TagsProtos/"]
 RUN dotnet restore "src/RemoteProxyApi/RemoteProxyApi.csproj"
 COPY . .
 WORKDIR "/src/src/RemoteProxyApi"
