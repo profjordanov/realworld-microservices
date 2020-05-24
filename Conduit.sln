@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagsClient", "src\TagsClien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagsProtos", "src\TagsProtos\TagsProtos.csproj", "{5495D8DD-89F6-4FFD-B110-9AF2DC4D0404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Conduit.Sandbox", "tests\Conduit.Sandbox\Conduit.Sandbox.csproj", "{E4530FD2-A877-46DF-94C2-887D0277A115}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conduit.Sandbox", "tests\Conduit.Sandbox\Conduit.Sandbox.csproj", "{E4530FD2-A877-46DF-94C2-887D0277A115}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProfilesService.Tests", "tests\ProfilesService.Tests\ProfilesService.Tests.csproj", "{A2236F3F-71A1-4E7C-A870-CA9F3503AA5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{E4530FD2-A877-46DF-94C2-887D0277A115}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4530FD2-A877-46DF-94C2-887D0277A115}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4530FD2-A877-46DF-94C2-887D0277A115}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2236F3F-71A1-4E7C-A870-CA9F3503AA5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2236F3F-71A1-4E7C-A870-CA9F3503AA5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2236F3F-71A1-4E7C-A870-CA9F3503AA5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2236F3F-71A1-4E7C-A870-CA9F3503AA5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +113,7 @@ Global
 		{95A9D8AE-793A-4FA6-AE44-4CB0ED14E5E1} = {9FDC14F9-0029-46A5-835A-2BF8DF2A569D}
 		{5495D8DD-89F6-4FFD-B110-9AF2DC4D0404} = {9FDC14F9-0029-46A5-835A-2BF8DF2A569D}
 		{E4530FD2-A877-46DF-94C2-887D0277A115} = {5D9F246F-D0CD-4498-B4E6-25A158B38FC2}
+		{A2236F3F-71A1-4E7C-A870-CA9F3503AA5A} = {5D9F246F-D0CD-4498-B4E6-25A158B38FC2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DE43CC6B-3427-4ACC-BA4C-B6BB7347E5B1}
