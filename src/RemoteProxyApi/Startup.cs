@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProfilesClient.Commands;
+using ProfilesClient.Hubs;
 using RemoteProxyApi.Configurations;
 using TagsClient.Commands;
 using TagsClient.DI;
@@ -28,9 +30,11 @@ namespace RemoteProxyApi
             services.AddMediatR(
                 typeof(Startup),
                 typeof(PublishHandler),
-                typeof(PublishCollection));
+                typeof(PublishCollection),
+                typeof(FollowUser));
             services.AddControllers();
             services.AddOpenApi();
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -48,9 +52,13 @@ namespace RemoteProxyApi
 
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+
+                //SignalR
+                endpoints.MapHub<FollowUserHub>("/followUser");
             });
         }
     }

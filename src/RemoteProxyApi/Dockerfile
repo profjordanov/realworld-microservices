@@ -12,6 +12,7 @@ COPY ["src/ArticlesClient/ArticlesClient.csproj", "src/ArticlesClient/"]
 COPY ["src/ArticlesProtos/ArticlesProtos.csproj", "src/ArticlesProtos/"]
 COPY ["src/TagsClient/TagsClient.csproj", "src/TagsClient/"]
 COPY ["src/TagsProtos/TagsProtos.csproj", "src/TagsProtos/"]
+COPY ["src/ProfilesClient/ProfilesClient.csproj", "src/ProfilesClient/"]
 RUN dotnet restore "src/RemoteProxyApi/RemoteProxyApi.csproj"
 COPY . .
 WORKDIR "/src/src/RemoteProxyApi"
