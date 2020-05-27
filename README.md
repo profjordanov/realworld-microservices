@@ -2,7 +2,7 @@
 
 # ![RealWorld Example App](logo.png)
 
-> ### A Microservices based ASP.NET Core codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
+> ### A Microservices ASP.NET Core codebase containing real world examples (CRUD, auth, advanced patterns, etc) that adheres to the [RealWorld](https://github.com/gothinkster/realworld) spec and API.
 
 
 ### [RealWorld Repo](https://github.com/gothinkster/realworld)
