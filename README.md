@@ -15,3 +15,11 @@ It completely adheres to the **ASP.NET Core** community style guides & best prac
 For more information on how to this works with other frontends/backends, head over to the [RealWorld](https://github.com/gothinkster/realworld) repo.
 
 # Features
+
+- [x] Microservices architecture
+
+ The backend is structured as a collection of web services that are:
+  - Highly maintainable and testable
+  - Loosely coupled
+  - Independently deployable
+  - Organized around business requirements
