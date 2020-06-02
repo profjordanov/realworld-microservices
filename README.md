@@ -23,3 +23,5 @@ For more information on how to this works with other frontends/backends, head ov
   - Loosely coupled
   - Independently deployable
   - Organized around business requirements
+  
+- [x] Communication via gRPC  
