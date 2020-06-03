@@ -20,4 +20,4 @@ For more information on how to this works with other frontends/backends, head ov
 
 - [x] Communication via gRPC - a new, growing way to connect services in a cross-platform, cross-language way. 
 
-- [x] Remote Proxy - acts like a local resource while hiding the details of how to connect to a remote resource over a network.
+- [x] Remote Proxy - acts like a local resource while hiding the details of how to connect to a remote resource over a network. It behaves as API gateway between the client and services.
