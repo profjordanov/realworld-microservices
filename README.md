@@ -16,7 +16,7 @@ For more information on how to this works with other frontends/backends, head ov
 
 # Features
 
-- [x] Microservices architecture
+- [x] Microservices architecture - architectural style that provides a highly maintainable, testable, loosely coupled collection of services that are independently deployable and organized around business capabilities.
 
 - [x] Communication via gRPC - a new, growing way to connect services in a cross-platform, cross-language way. 
 
