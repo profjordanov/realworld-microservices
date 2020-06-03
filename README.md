@@ -18,12 +18,6 @@ For more information on how to this works with other frontends/backends, head ov
 
 - [x] Microservices architecture
 
- The backend is structured as a collection of web services that are:
-  - Highly maintainable and testable
-  - Loosely coupled
-  - Independently deployable
-  - Organized around business requirements
-  
 - [x] Communication via gRPC  
 
 - [x] Remote Proxy ( acts like a local resource while hiding the details of how to connect to a remote resource over a network )
