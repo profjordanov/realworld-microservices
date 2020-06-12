@@ -27,3 +27,5 @@ For more information on how to this works with other frontends/backends, head ov
 - [x] Applying Functional Principles - Functional programming in C# can give you insight into how your programs will behave. Specific topics here are immutable architecture, avoiding exceptions, primitive obsession, how to handles failures and input errors, and more.
 
 - [x] Command-Query Responsibility Segregation (CQRS) - encourages you to untangle a single, unified domain model and create two models: one for handling commands, and the other one for handling queries. CQRS allows us to make different decisions for reads and writes, which in turn brings three benefits: scalability, performance, and the biggest one, simplicity. CQRS extends CQS to the architectural level.
+
+- [x] MediatR - ensures that the messages are routed to the appropriate places. So you might think of it as a little more of an in‑memory messaging system.
