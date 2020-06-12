@@ -29,3 +29,5 @@ For more information on how to this works with other frontends/backends, head ov
 - [x] Command-Query Responsibility Segregation (CQRS) - encourages you to untangle a single, unified domain model and create two models: one for handling commands, and the other one for handling queries. CQRS allows us to make different decisions for reads and writes, which in turn brings three benefits: scalability, performance, and the biggest one, simplicity. CQRS extends CQS to the architectural level.
 
 - [x] MediatR - ensures that the messages are routed to the appropriate places. So you might think of it as a little more of an in‑memory messaging system.
+
+- [x] Docker - Containers represent a higher-density kind of "virtualization" that can meet the needs of certain scenarios better than traditional hypervisors.
