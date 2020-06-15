@@ -31,3 +31,5 @@ For more information on how to this works with other frontends/backends, head ov
 - [x] MediatR - ensures that the messages are routed to the appropriate places. So you might think of it as a little more of an in‑memory messaging system.
 
 - [x] Docker - Containers represent a higher-density kind of "virtualization" that can meet the needs of certain scenarios better than traditional hypervisors.
+
+- [x] Travis CI - continuous integration service used to build and test projects. Travis CI automatically detects when a commit has been made and pushed to the GitHub repository that is using Travis CI, and each time this happens, it will try to build the project and run tests.
