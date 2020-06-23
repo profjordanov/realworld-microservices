@@ -1,3 +1,5 @@
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+
 ![Build Status](https://travis-ci.com/profjordanov/realworld-microservices.svg?branch=master)
 
 # ![RealWorld Example App](https://raw.githubusercontent.com/profjordanov/realworld-microservices/master/docs/logo.png)
