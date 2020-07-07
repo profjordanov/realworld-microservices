@@ -1,6 +1,5 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cdfa4f5a1e854002bd8399c38a9bcfb9)](https://app.codacy.com/manual/profjordanov/realworld-microservices?utm_source=github.com&utm_medium=referral&utm_content=profjordanov/realworld-microservices&utm_campaign=Badge_Grade_Dashboard)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-
 ![Build Status](https://travis-ci.com/profjordanov/realworld-microservices.svg?branch=master)
 
 # ![RealWorld Example App](https://raw.githubusercontent.com/profjordanov/realworld-microservices/master/docs/logo.png)
